@@ -76,6 +76,7 @@ SRC_URI = "git://github.com/xbmc/xbmc.git;branch=Jarvis \
            file://0009-lib-cximage-6.0-fix-compilation-with-gcc6.patch \
            file://0010-curl-support-version-7.5.0-and-upwards.patch \
            file://0011-xbmc_pvr_types.h-Fix-compilation-with-gcc6.patch \
+           file://0012-Always-compile-libcpluff-as-PIC.patch \
 "
 
 inherit autotools-brokensep gettext pythonnative
