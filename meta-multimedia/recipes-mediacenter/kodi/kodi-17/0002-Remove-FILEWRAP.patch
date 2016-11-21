@@ -1,7 +1,7 @@
-From f4c5710192256e903b253353fb018ebd68d0b651 Mon Sep 17 00:00:00 2001
+From ad1977a358319093b305df6d84be6db676ef1e4a Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Sun, 6 Nov 2016 22:35:16 -0800
-Subject: [PATCH 7/8] Remove FILEWRAP
+Subject: [PATCH 02/10] Remove FILEWRAP
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
@@ -10,10 +10,10 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  2 files changed, 2 insertions(+), 8 deletions(-)
 
 diff --git a/xbmc/utils/posix/PosixInterfaceForCLog.cpp b/xbmc/utils/posix/PosixInterfaceForCLog.cpp
-index 6614487..a91d157 100644
+index a3d4983..8443024 100644
 --- a/xbmc/utils/posix/PosixInterfaceForCLog.cpp
 +++ b/xbmc/utils/posix/PosixInterfaceForCLog.cpp
-@@ -28,10 +28,6 @@
+@@ -29,10 +29,6 @@
  #include "platform/android/activity/XBMCApp.h"
  #endif // TARGET_ANDROID
  
@@ -24,7 +24,7 @@ index 6614487..a91d157 100644
  CPosixInterfaceForCLog::CPosixInterfaceForCLog() :
    m_file(NULL)
  { }
-@@ -51,7 +47,7 @@ bool CPosixInterfaceForCLog::OpenLogFile(const std::string &logFilename, const s
+@@ -52,7 +48,7 @@ bool CPosixInterfaceForCLog::OpenLogFile(const std::string &logFilename, const s
    (void)remove(backupOldLogToFilename.c_str()); // if it's failed, try to continue
    (void)rename(logFilename.c_str(), backupOldLogToFilename.c_str()); // if it's failed, try to continue
  
@@ -34,24 +34,24 @@ index 6614487..a91d157 100644
      return false; // error, can't open log file
  
 diff --git a/xbmc/utils/posix/PosixInterfaceForCLog.h b/xbmc/utils/posix/PosixInterfaceForCLog.h
-index bb53442..2983e73 100644
+index c1e8ffe..75836b7 100644
 --- a/xbmc/utils/posix/PosixInterfaceForCLog.h
 +++ b/xbmc/utils/posix/PosixInterfaceForCLog.h
-@@ -21,8 +21,6 @@
+@@ -19,8 +19,6 @@
+  *
+  */
  
- #include <string>
- 
--struct FILEWRAP; // forward declaration, wrapper for FILE
+-#include <string>
 -
+ struct FILEWRAP; // forward declaration, wrapper for FILE
+ 
  class CPosixInterfaceForCLog
- {
- public:
 @@ -34,5 +32,5 @@ public:
    void PrintDebugString(const std::string& debugString);
-   static void GetCurrentLocalTime(int& hour, int& minute, int& second);
+   static void GetCurrentLocalTime(int& hour, int& minute, int& second, double& millisecond);
  private:
 -  FILEWRAP* m_file;
-+  FILE * m_file;
++  FILE* m_file;
  };
 -- 
 2.10.2

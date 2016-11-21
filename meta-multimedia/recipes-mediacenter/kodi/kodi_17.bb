@@ -63,20 +63,22 @@ DEPENDS = " \
 
 PROVIDES = "xbmc"
 
-SRCREV = "7f6abd1dd6d1aefcb4303083f34aaa90a8df9fce"
+SRCREV = "59579457e5fa56baae3b3fb2521518ad6fadd14e"
 PV = "17.0+gitr${SRCPV}"
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
-           file://0001-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
-           file://0002-handle-SIGTERM.patch \
-           file://0003-add-support-to-read-frequency-output-if-using-intel-.patch \
-           file://0004-Disable-DVD-support.patch \
-           file://0005-Always-compile-libcpluff-as-PIC.patch \
-           file://0006-build-Add-support-for-musl-triplets.patch \
+           file://0003-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
+           file://0004-handle-SIGTERM.patch \
+           file://0005-add-support-to-read-frequency-output-if-using-intel-.patch \
+           file://0006-Disable-DVD-support.patch \
+           file://0007-Always-compile-libcpluff-as-PIC.patch \
+           file://0008-kodi-config.cmake-use-CMAKE_FIND_ROOT_PATH-to-fix-cr.patch \
+           file://0009-build-Add-support-for-musl-triplets.patch \
+           file://0010-RssReader-Fix-compiler-warning-comparing-pointer-to-.patch \
 "
 
 SRC_URI_append_libc-musl = " \
-           file://0007-Remove-FILEWRAP.patch \
-           file://0008-Fix-file_Emu-on-musl.patch \
+           file://0001-Fix-file_Emu-on-musl.patch \
+           file://0002-Remove-FILEWRAP.patch \
 "
 
 inherit autotools-brokensep gettext pythonnative
@@ -103,7 +105,9 @@ PACKAGECONFIG[x11] = "--enable-x11,--disable-x11,libxinerama libxmu libxrandr li
 PACKAGECONFIG[pulseaudio] = "--enable-pulse,--disable-pulse,pulseaudio"
 PACKAGECONFIG[lcms] = "--enable-lcms2,--disable-lcms2,lcms"
 
+
 EXTRA_OECONF_append_rpi = " --disable-openmax --enable-player=omxplayer --with-platform=raspberry-pi2"
+EXTRA_OECONF_remove_aarch64 = "--with-platform=raspberry-pi2"
 LDFLAGS_append_rpi = " -lvchostif "
 EXTRA_OECONF = " \
     --disable-debug \
@@ -118,9 +122,11 @@ EXTRA_OECONF = " \
     --enable-texturepacker=no \
 "
 
-FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations -fomit-frame-pointer -O4 -ffast-math"
-FULL_OPTIMIZATION_armv7ve = "-fexpensive-optimizations -fomit-frame-pointer -O4 -ffast-math"
+FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations -fomit-frame-pointer -O3 -ffast-math"
+FULL_OPTIMIZATION_armv7ve = "-fexpensive-optimizations -fomit-frame-pointer -O3 -ffast-math"
 BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
+
+EXTRA_OECONF_append = " LIBTOOL=${STAGING_BINDIR_CROSS}/${HOST_SYS}-libtool"
 
 # for python modules
 export HOST_SYS
@@ -186,4 +192,6 @@ RRECOMMENDS_${PN}_append_libc-glibc = " glibc-charmap-ibm850 \
                                       "
 
 RPROVIDES_${PN} += "xbmc"
+
+TOOLCHAIN = "gcc"
 
