@@ -63,7 +63,7 @@ DEPENDS = " \
 
 PROVIDES = "xbmc"
 
-SRCREV = "59579457e5fa56baae3b3fb2521518ad6fadd14e"
+SRCREV = "c5d944c116e637d0e2f83bb7a9753e7c11a788d8"
 PV = "17.0+gitr${SRCPV}"
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
            file://0003-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
@@ -74,6 +74,8 @@ SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
            file://0008-kodi-config.cmake-use-CMAKE_FIND_ROOT_PATH-to-fix-cr.patch \
            file://0009-build-Add-support-for-musl-triplets.patch \
            file://0010-RssReader-Fix-compiler-warning-comparing-pointer-to-.patch \
+           file://0011-Let-configure-pass-on-unknown-architectures-setting-.patch \
+           file://0012-Revert-droid-fix-builds-with-AML-disabled.patch \
 "
 
 SRC_URI_append_libc-musl = " \
