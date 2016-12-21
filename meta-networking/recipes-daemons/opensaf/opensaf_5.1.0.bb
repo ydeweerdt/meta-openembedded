@@ -21,8 +21,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/${BPN}/releases/${BPN}-${PV}.tar.gz \
            file://0001-plmcd-error-fix.patch \
            "
 
-SRC_URI[md5sum] = "94cd1a4c0406e6a45bb04c003f8690e7"
-SRC_URI[sha256sum] = "4b4188a0f3d0ed1ed0e3d77de27c45e2c96b437401de08e7df2ed9ecd54bb999"
+SRC_URI[md5sum] = "821391311c73bc2f2dc5a7d867f732e0"
+SRC_URI[sha256sum] = "f687c883a0d50517c33cb445d9177a9e2b07f5bb077bcc0235ffc0fc99af5cb6"
 
 inherit autotools useradd systemd pkgconfig
 

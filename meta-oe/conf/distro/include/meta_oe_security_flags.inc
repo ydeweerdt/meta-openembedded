@@ -25,3 +25,4 @@ SECURITY_CFLAGS_pn-libvdpau = "${SECURITY_NO_PIE_CFLAGS}"
 #| make[1]: *** [Makefile:675: libluajit.so] Error 1
 SECURITY_CFLAGS_pn-luajit = "${SECURITY_NO_PIE_CFLAGS}"
 
+SECURITY_CFLAGS_pn-opensaf = "${SECURITY_NO_PIE_CFLAGS}"
